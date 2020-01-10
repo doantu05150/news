@@ -1,20 +1,28 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import HomePage from './pages/home'
-import Answer from './pages/hoi-dap'
+import { HomePage, Answer } from './pages'
+import Navbar from './components/common/Navbar'
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/">
-          <HomePage />
-        </Route>
-        <Route path="/hoi-dap">
-          <Answer />
-        </Route>
-      </Switch>
-    </Router>
+    <div>
+      <Router>
+        <div>
+          <Navbar />
+
+          <hr />
+
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Route exact path="/hoi-dap">
+              <Answer />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </div>
   )
 }
 
