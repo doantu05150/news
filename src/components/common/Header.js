@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
+import { withRouter } from 'react-router'
 import { Popover, OverlayTrigger } from 'react-bootstrap'
 import { IoMdMenu, IoIosSearch } from 'react-icons/io'
 import { FaRegUserCircle } from 'react-icons/fa'
@@ -44,20 +45,26 @@ const InputSearch = styled.input`
   }
 `
 
-function PopoverCustom() {
+function PopoverCustom(history) {
   return (
     <Popover id="popover-basic">
       <Popover.Title as="h3">Popover right</Popover.Title>
       <Popover.Content>
         <div>
-          <div>Login</div>
+          <div
+            onClick={() => {
+              history.push('/login')
+            }}
+          >
+            Login
+          </div>
         </div>
       </Popover.Content>
     </Popover>
   )
 }
 
-export default function Header() {
+function Header({ history }) {
   const [showPopover, setShowPopover] = useState(false)
   const target = useRef(null)
   return (
@@ -68,7 +75,7 @@ export default function Header() {
           target={target.current}
           trigger="click"
           placement="left"
-          overlay={PopoverCustom}
+          overlay={PopoverCustom(history)}
         >
           <FaRegUserCircle
             onClick={() => setShowPopover(!showPopover)}
@@ -85,3 +92,5 @@ export default function Header() {
     </HeaderContainer>
   )
 }
+
+export default withRouter(Header)

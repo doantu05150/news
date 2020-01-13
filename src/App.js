@@ -1,29 +1,51 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { HomePage } from './pages'
+// import styled from 'styled-components'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { HomePage, Login } from './pages'
 // import Navbar from './components/common/Navbar'
 
 function App() {
   return (
-    <HomePage />
+    <Router>
+      <div>
+        {/*
+        A <Switch> looks through all its children <Route>
+        elements and renders the first one whose path
+        matches the current URL. Use a <Switch> any time
+        you have multiple routes, but you want only one
+        of them to render at a time
+      */}
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
     // <div>
-    //   <Router>
-    //     <div>
-    //       <Navbar />
+    //   <HomePage />
+    //   {/* <DisplayNone>
+    //     <Router>
+    //       <div>
+    //         <Navbar />
 
-    //       <hr />
+    //         <hr />
 
-    //       <Switch>
-    //         <Route exact path="/">
-    //           <HomePage />
-    //         </Route>
-    //         <Route exact path="/hoi-dap">
-    //           <Answer />
-    //         </Route>
-    //       </Switch>
-    //     </div>
-    //   </Router>
+    //         <Switch>
+    //           <Route exact path="/">
+    //             <HomePage />
+    //           </Route>
+    //           <Route exact path="/login">
+    //             <Login />
+    //           </Route>
+    //         </Switch>
+    //       </div>
+    //     </Router>
+    //   </DisplayNone> */}
     // </div>
   )
 }
