@@ -1,12 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Container, Row, Col } from 'react-bootstrap'
 import MainLayout from '../../layout/MainLayout'
 import Header from '../../components/common/Header'
-import FormSocial from '../../components/home/FormSocial'
+import Banner from '../../components/home/Banner'
+import BoxQuestion from '../../components/home/BoxQuestion'
 
 const HomeWrapper = styled.div`
-  text-align: center;
+  min-height: 100vh;
+  display: flex;
+`
+
+const MainContent = styled.div`
+  margin: 0 auto;
+  max-width: 768px;
+  background: #fff !important;
+`
+
+const ClearContent = styled.div`
+  height: calc(64px + 48px);
 `
 
 export default function Home() {
@@ -14,15 +25,11 @@ export default function Home() {
     <MainLayout>
       <Header />
       <HomeWrapper>
-        <Container>
-          <Row>
-            <Col lg="2">1 of 3</Col>
-            <Col>
-              <FormSocial />
-            </Col>
-            <Col lg="3">3 of 3</Col>
-          </Row>
-        </Container>
+        <MainContent>
+          <ClearContent />
+          <Banner />
+          <BoxQuestion />
+        </MainContent>
       </HomeWrapper>
     </MainLayout>
   )

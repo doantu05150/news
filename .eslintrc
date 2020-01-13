@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "react-hooks"],
   "extends": ["airbnb", "prettier", "prettier/react"],
   "globals": {
     "document": true,
@@ -22,7 +22,10 @@
     "react/no-array-index-key": 0,
     "no-underscore-dangle": 0,
     "import/imports-first": ["error", "absolute-first"],
-    "import/newline-after-import": "error"
+    "import/newline-after-import": "error",
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn",
+    "global-require": 0
   },
   "overrides": [
     {

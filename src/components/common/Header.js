@@ -1,84 +1,87 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
-import { IoMdSearch, IoMdNotificationsOutline, IoMdMenu } from 'react-icons/io'
-import { TiWorldOutline } from 'react-icons/ti'
+import { Popover, OverlayTrigger } from 'react-bootstrap'
+import { IoMdMenu, IoIosSearch } from 'react-icons/io'
+import { FaRegUserCircle } from 'react-icons/fa'
 
-const HeaderWrapper = styled.div`
+const HeaderContainer = styled.div`
   display: flex;
-  flex-wrap: nowrap;
-  background-color: #ec407a;
-  padding: 8px 30px;
+  flex-direction: column;
+  background-color: #f04406;
+  padding: 0 10px;
+  position: fixed;
+  width: 100%;
+`
+
+const HeaderTop = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 64px;
   align-items: center;
 `
-const HeaderLeft = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  padding: 4px 10px;
-  .input-search {
-    margin-left: 20px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    .ct-input {
-      height: 32px;
-      width: 300px;
-      border-radius: 4px;
-      border: 0;
-      padding: 0 15px 0 40px;
-    }
-    .icon-search {
-      position: absolute;
-      top: 0;
-      left: 7px;
-      height: 100%;
-    }
+
+const HeaderSearch = styled.div`
+  position: relative;
+
+  .icon-search-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    margin: 0 15px;
   }
 `
 
-const HeaderRight = styled.div`
-  display: flex;
-  align-items: center;
-  .icon-right {
-    padding: 0 6px;
-  }
-`
-
-const LogoTitle = styled.div`
-  color: #fff;
-  font-size: 26px;
-  width: 140px;
-`
-
-const AvatarCircle = styled.div`
-  border-radius: 50%;
-  border: 1px solid #fff;
-  width: 40px;
+const InputSearch = styled.input`
   height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  color: #fff;
+  border-radius: 4px;
+  padding: 0 15px 0 52px;
+  border: 0;
+  width: 100%;
+  margin-bottom: 8px;
+  &:focus {
+    outline-width: 0;
+  }
 `
+
+function PopoverCustom() {
+  return (
+    <Popover id="popover-basic">
+      <Popover.Title as="h3">Popover right</Popover.Title>
+      <Popover.Content>
+        <div>
+          <div>Login</div>
+        </div>
+      </Popover.Content>
+    </Popover>
+  )
+}
 
 export default function Header() {
+  const [showPopover, setShowPopover] = useState(false)
+  const target = useRef(null)
   return (
-    <HeaderWrapper>
-      <HeaderLeft>
-        <LogoTitle>Office</LogoTitle>
-        <div className="input-search">
-          <IoMdSearch color="gray" size="1.4rem" className="icon-search" />
-          <input className="ct-input" placeholder="tim kiem" />
-        </div>
-      </HeaderLeft>
-      <HeaderRight>
-        <TiWorldOutline color="white" size="1.6rem" className="icon-right" />
-        <IoMdMenu color="white" size="1.6rem" className="icon-right" />
-        <IoMdNotificationsOutline color="white" size="1.6rem" className="icon-right" />
-        <AvatarCircle>T</AvatarCircle>
-      </HeaderRight>
-    </HeaderWrapper>
+    <HeaderContainer>
+      <HeaderTop>
+        <IoMdMenu color="#fff" size="1.8rem" />
+        <OverlayTrigger
+          target={target.current}
+          trigger="click"
+          placement="left"
+          overlay={PopoverCustom}
+        >
+          <FaRegUserCircle
+            onClick={() => setShowPopover(!showPopover)}
+            color="#fff"
+            size="1.8rem"
+            ref={target}
+          />
+        </OverlayTrigger>
+      </HeaderTop>
+      <HeaderSearch>
+        <IoIosSearch className="icon-search-input" color="#bfbfbf" size="1.5rem" />
+        <InputSearch placeholder="Bạn muốn hỏi gì?" />
+      </HeaderSearch>
+    </HeaderContainer>
   )
 }
