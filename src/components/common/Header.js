@@ -45,19 +45,25 @@ const InputSearch = styled.input`
   }
 `
 
+const BtnLogin = styled.button`
+  border: 0;
+  background: transparent;
+`
+
 function PopoverCustom(history) {
   return (
     <Popover id="popover-basic">
       <Popover.Title as="h3">Popover right</Popover.Title>
       <Popover.Content>
         <div>
-          <div
+          <BtnLogin
+            type="button"
             onClick={() => {
               history.push('/login')
             }}
           >
             Login
-          </div>
+          </BtnLogin>
         </div>
       </Popover.Content>
     </Popover>
