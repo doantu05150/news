@@ -4,6 +4,7 @@ import { withRouter } from 'react-router'
 import { Popover, OverlayTrigger } from 'react-bootstrap'
 import { IoMdMenu, IoIosSearch } from 'react-icons/io'
 import { FaRegUserCircle } from 'react-icons/fa'
+import Drawer from './Drawer'
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -95,6 +96,7 @@ function Header({ history }) {
         <IoIosSearch className="icon-search-input" color="#bfbfbf" size="1.5rem" />
         <InputSearch placeholder="Bạn muốn hỏi gì?" />
       </HeaderSearch>
+      <Drawer />
     </HeaderContainer>
   )
 }
